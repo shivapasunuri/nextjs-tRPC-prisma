@@ -1,14 +1,16 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## NextJs tRPC TailWindCSS Prisma - Boilerplate project
 
-First, run the development server:
+- First clone the project and run command: `yarn`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Then go to MySQL Workbench or CLI and create-database: `trpc-rest`
+
+- Edit the `.env` file and add the MySQL server username and password
+
+- Run `npx prisma migrate dev --name init`
+
+- Now run `yarn dev` or `npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
