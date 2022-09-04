@@ -23,7 +23,6 @@ export const appRouter = trpc
       name: z.string(),
     }),
     async resolve({ input }) {
-      // const api = new PrismaClient();
       const createUser = await prisma.user.create({
         data: { email: input.email, name: input.name },
       });

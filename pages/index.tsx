@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { trpc } from "../utils/trpc";
 
 interface AllUsers {
@@ -13,7 +13,10 @@ const Home: NextPage = () => {
   const [name, setName] = useState<string>("");
   const [allUsers, setAllUsers] = useState<AllUsers[]>([]);
 
-  const hello = trpc.useQuery(["hello", { text: "tRPC Boilerplate" }]);
+  const hello = trpc.useQuery([
+    "hello",
+    { text: "NextJs Prisma tRPC TailWindCSS Boilerplate" },
+  ]);
   if (hello.isLoading) return <div>Loading...</div>;
 
   const createUser = trpc.useMutation(["create-user"]);
@@ -41,7 +44,9 @@ const Home: NextPage = () => {
               Name
             </label>
             <input
-              onChange={(e): any => setName(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setName(e.target.value)
+              }
               value={name}
               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0"
               type="text"
@@ -58,7 +63,9 @@ const Home: NextPage = () => {
               Email
             </label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               value={email}
               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0"
               type="email"
@@ -90,19 +97,19 @@ const Home: NextPage = () => {
                     <tr>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-blue-500 px-6 py-4 text-left"
                       >
                         Id
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-blue-500 px-6 py-4 text-left"
                       >
                         Name
                       </th>
                       <th
                         scope="col"
-                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-blue-500 px-6 py-4 text-left"
                       >
                         Email
                       </th>
