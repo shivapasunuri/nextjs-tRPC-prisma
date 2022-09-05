@@ -11,20 +11,24 @@ interface AllUsers {
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [allUsers, setAllUsers] = useState<AllUsers[]>([]);
+  const [allUsers, setAllUsers] = useState<Array<AllUsers>>([]);
 
   const hello = trpc.useQuery([
     "hello",
     { text: "NextJs Prisma tRPC TailWindCSS Boilerplate" },
   ]);
-  if (hello.isLoading) return <div>Loading...</div>;
+  // if (hello.isLoading) return <div>Loading...</div>;
 
   const createUser = trpc.useMutation(["create-user"]);
 
   const allData = trpc.useQuery(["all-users"]);
   useEffect(() => {
-    if (allData.data) setAllUsers(allData.data);
-  }, [allData]);
+    try {
+      setAllUsers(allData.data!);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [allData.data]);
 
   const createUserHandler = (): void => {
     createUser.mutate({ email: email, name: name });
@@ -118,7 +122,10 @@ const Home: NextPage = () => {
                   <tbody>
                     {allUsers.map((user) => {
                       return (
-                        <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                        <tr
+                          key={user.id}
+                          className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                        >
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {user.id}
                           </td>
