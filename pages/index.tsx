@@ -129,7 +129,7 @@ const Home: NextPage = () => {
                       onClick={() =>
                         handleEditClick(user.id, user.name, user.email)
                       }
-                      className="flex p-2.5 bg-stone-500 rounded-xl hover:rounded-3xl hover:bg-stone-600 transition-all duration-300 text-white"
+                      className="flex p-2.5 bg-orange-500 rounded-xl hover:rounded-3xl hover:bg-orange-600 transition-all duration-300 text-white"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +246,7 @@ const Home: NextPage = () => {
                     Cancel
                   </button>
                   <button
-                    className="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
+                    className="inline-block px-6 py-2.5 bg-orange-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
                     type="button"
                     onClick={() => handleEdit()}
                   >
