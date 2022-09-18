@@ -4,18 +4,6 @@ import { prisma } from "../utils/prisma";
 
 export const appRouter = trpc
   .router()
-  .query("hello", {
-    input: z
-      .object({
-        text: z.string().nullish(),
-      })
-      .nullish(),
-    resolve({ input }) {
-      return {
-        greeting: `${input?.text ?? "world"}`,
-      };
-    },
-  })
   .mutation("create-user", {
     input: z.object({
       email: z.string(),
@@ -25,7 +13,7 @@ export const appRouter = trpc
       const createUser = await prisma.user.create({
         data: { email: input.email, name: input.name },
       });
-      return { status: "Success", createUser: createUser };
+      return { success: true, createUser: createUser };
     },
   })
   .query("all-users", {
@@ -34,6 +22,31 @@ export const appRouter = trpc
       const allUsers = await prisma.user.findMany();
       //   console.log(allUsers);
       return allUsers;
+    },
+  })
+  .mutation("delete-user", {
+    input: z.object({
+      userId: z.number(),
+    }),
+    async resolve({ input }) {
+      await prisma.user.delete({
+        where: { id: input.userId },
+      });
+      return { success: true };
+    },
+  })
+  .mutation("update-user", {
+    input: z.object({
+      id: z.number(),
+      name: z.string(),
+      email: z.string(),
+    }),
+    async resolve({ input }) {
+      await prisma.user.update({
+        where: { id: input.id },
+        data: { name: input.name, email: input.email },
+      });
+      return { success: true };
     },
   });
 
