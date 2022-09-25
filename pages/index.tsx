@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { ChangeEvent, useEffect, useState } from "react";
 import { trpc } from "../utils/trpc";
 
-interface AllUsers {
+interface User {
   id: number;
   name: string;
   email: string;
@@ -11,9 +11,9 @@ interface AllUsers {
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [allUsers, setAllUsers] = useState<Array<AllUsers>>([]);
+  const [allUsers, setAllUsers] = useState<Array<User>>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [userSelected, setUserSelected] = useState<AllUsers>({
+  const [userSelected, setUserSelected] = useState<User>({
     id: -1,
     name: "",
     email: "",
